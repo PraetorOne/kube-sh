@@ -4,7 +4,7 @@ Prerequisits
 
 - Have 3 or 4 server either running in cloud or in local PC using virtualization (e.g VirtualBox)
 - Install supported OS (Debain 11, Debian 10, Centos 7, Ubuntu 20)
-- Make sure you have open root access to all servers by following this guide
+- Make sure you have open root access to all servers by following [Root Access](https://github.com/PraetorOne/kube-sh/blob/main/guides/ROOTACCESS.md) guide
 - Have all servers in same network aka local network and enter only local ip address when running first script
 
 Run this script in seperate control machine which is not part of Kubernetes setup
