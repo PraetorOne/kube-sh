@@ -31,11 +31,11 @@ export CENT_OS='"CentOS Linux"'
 export DEBIAN='"Debian GNU/Linux"'
 export UBUNTU='"Ubuntu"'
 
-if [ "$CENT_OS" = "$OS_RELEASE" ]; then
+if [ "$UBUNTU" = "$OS_RELEASE" ]; then
+    apt_depends
+elif [ "$CENT_OS" = "$OS_RELEASE" ]; then
     yum_depends
 elif [ "$DEBIAN" = "$OS_RELEASE" ]; then
-    apt_depends
-elif [ "$UBUNTU" = "$OS_RELEASE" ]; then
     apt_depends
 fi
 
