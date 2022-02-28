@@ -10,7 +10,7 @@ Prerequisits
 Run this script in seperate control machine which is not part of Kubernetes setup
 
 ```shell
-wget https://github.com/PraetorOne/kube-sh/blob/main/kube.sh
+wget https://raw.githubusercontent.com/PraetorOne/kube-sh/main/kube.sh
 chmod +x kube.sh
 kube.sh
 ```
@@ -40,7 +40,7 @@ clusters:
 ## Step 3 - Ready Kubernetes cluster for Akash
 
 ```shell
-wget https://github.com/PraetorOne/kube-sh/blob/main/akash.sh
+wget https://raw.githubusercontent.com/PraetorOne/kube-sh/main/akash.sh
 chmod +x akash.sh
 akash.sh
 ```
