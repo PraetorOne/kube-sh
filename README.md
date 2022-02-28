@@ -12,7 +12,7 @@ Run this script in seperate control machine which is not part of Kubernetes setu
 ```shell
 wget https://raw.githubusercontent.com/PraetorOne/kube-sh/main/kube.sh
 chmod +x kube.sh
-kube.sh
+./kube.sh
 ```
 
 ## Step 2 - Download Kube config file from Master Node
@@ -42,7 +42,7 @@ clusters:
 ```shell
 wget https://raw.githubusercontent.com/PraetorOne/kube-sh/main/akash.sh
 chmod +x akash.sh
-akash.sh
+./akash.sh
 ```
 
 After this step check if everything is install using following script and check result
