@@ -38,9 +38,8 @@ kubectl get nodes
 # Check if node is is Ready
 
 
-
 # Enable Gvisor
-(
+function install_gvisor() {
     set -e
     URL=https://storage.googleapis.com/gvisor/releases/release/latest
     wget ${URL}/runsc ${URL}/runsc.sha512 \
@@ -52,8 +51,10 @@ kubectl get nodes
     rm -f *.sha512
     chmod a+rx runsc gvisor-containerd-shim containerd-shim-runsc-v1
     sudo mv runsc gvisor-containerd-shim containerd-shim-runsc-v1 /usr/local/bin
+}
 
-)
+install_gvisor
+
 
 cp /var/lib/rancher/k3s/agent/etc/containerd/config.toml \
 /var/lib/rancher/k3s/agent/etc/containerd/config.toml.back
