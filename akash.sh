@@ -1,11 +1,4 @@
 !/bin/bash
-stable=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-
-curl -LO https://storage.googleapis.com/kubernetes-release/release/${stable}/bin/linux/amd64/kubectl
-
-chmod +x ./kubectl
-
-mv ./kubectl /usr/local/bin/kubectl
 
 kubectl label nodes node1 akash.network/role=ingress
 

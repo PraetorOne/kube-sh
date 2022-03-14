@@ -24,10 +24,10 @@ function yum_depends() {
     pip3 install -r requirements.txt
 }
 
-export OS_RELEASE=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
-export CENT_OS='"CentOS Linux"'
-export DEBIAN='"Debian GNU/Linux"'
-export UBUNTU='"Ubuntu"'
+OS_RELEASE=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+CENT_OS='"CentOS Linux"'
+DEBIAN='"Debian GNU/Linux"'
+UBUNTU='"Ubuntu"'
 
 if [ "$UBUNTU" = "$OS_RELEASE" ]; then
     apt_depends
@@ -59,6 +59,9 @@ declare -a IPS
 for i in $(seq $NODECOUNT); do
     echo "Please enter Node ${i} ip address"
     read dest
+
+    if [ $i = 1 ]; do
+    export MASTERNODEIP=${dest}
 
     echo "Please enter password ${dest}"
     read pass
@@ -98,4 +101,10 @@ ansible
 ansible-playbook -i inventory/akash/hosts.yaml -b -v --private-key=~/.ssh/id_rsa cluster.yml
 
 # Export kube config
-export KUBECONFIG=$KUBECONFIG
+mkdir ~/.kube
+scp root@${MASTERNODEIP}:/etc/kubernetes/admin.conf ~/.kube/config
+
+stable=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+curl -LO https://storage.googleapis.com/kubernetes-release/release/${stable}/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+mv ./kubectl /usr/local/bin/kubectl

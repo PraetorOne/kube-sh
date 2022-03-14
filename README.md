@@ -19,13 +19,6 @@ chmod +x kube.sh
 
 When you finish running above script without error, It is time to download kube config file from master node of the Kubernetes.
 
-Copy file from Kubernetes Master node
-
-```shell
-mkdir ~/.kube
-scp root@{MasterNodeIp}:/etc/kubernetes/admin.conf ~/.kube/config
-```
-
 To access Kubernetes from anywhere, you need to edit config file and add insecure-skip-tls-verify: true. Warning: Editing this create insecure environment. We not recommend this step.
 
 If your control machine is in same local network and it can access kubernetes from control machine then you can skip this part.
