@@ -71,6 +71,24 @@ kubectl get crd
 
 Go to [Praetor Provider](https://praetor.testcoders.com) and connect wallet to get started.
 
+#
+
+# If you are installing using K3S then follow this steps
+
+### Step 1
+
+Prerequisits
+
+- Have 1 Server with root access
+- Install supported OS (Debain 11, Debian 10, Centos 7, Ubuntu 20)
+- Make sure you have open root access to all servers by following [Root Access](https://github.com/PraetorOne/kube-sh/blob/main/guides/ROOTACCESS.md) guide
+
+Run this script in same machine
+
+```shell
+curl -sfL https://raw.githubusercontent.com/PraetorOne/kube-sh/main/k3s.sh | bash -
+```
+
 ### Issues
 
 Please create an issue in this repo if you find any in these scripts.
