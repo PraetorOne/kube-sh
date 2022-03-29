@@ -17,6 +17,7 @@ OS_RELEASE=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 CENT_OS='"CentOS Linux"'
 DEBIAN='"Debian GNU/Linux"'
 UBUNTU='"Ubuntu"'
+AMAZON='"Amazon Linux"'
 
 if [ "$UBUNTU" = "$OS_RELEASE" ]; then
     apt_depends
@@ -24,6 +25,8 @@ elif [ "$CENT_OS" = "$OS_RELEASE" ]; then
     yum_depends
 elif [ "$DEBIAN" = "$OS_RELEASE" ]; then
     apt_depends
+elif [ "$AMAZON" = "$OS_RELEASE" ]; then
+    yum_depends
 fi
 
 
@@ -35,24 +38,20 @@ sleep 30
 
 kubectl get nodes
 
-# Copy config file
-cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
-
-
 echo "Making K3S Akash Ready.."
 
 !/bin/bash
 
 kubectl label nodes node1 akash.network/role=ingress
 
-kubectl apply -f https://raw.githubusercontent.com/ovrclk/akash/mainnet/main/pkg/apis/akash.network/v1/crd.yaml
-kubectl apply -f https://raw.githubusercontent.com/ovrclk/akash/mainnet/main/pkg/apis/akash.network/v1/provider_hosts_crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/ovrclk/akash/v0.14.1/pkg/apis/akash.network/v1/crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/ovrclk/akash/v0.14.1/pkg/apis/akash.network/v1/provider_hosts_crd.yaml
 
 kubectl get crd -n kube-system
 
-kubectl apply -f https://raw.githubusercontent.com/ovrclk/akash/mainnet/main/_docs/kustomize/networking/network-policy-default-ns-deny.yaml
+kubectl apply -f https://raw.githubusercontent.com/ovrclk/akash/v0.14.1/_docs/kustomize/networking/network-policy-default-ns-deny.yaml
 
-git clone --depth 1 -b mainnet/main https://github.com/ovrclk/akash.git
+git clone --depth 1 -b v0.14.1 https://github.com/ovrclk/akash.git
 cd akash
 kubectl apply -f _docs/kustomize/networking/namespace.yaml
 kubectl kustomize _docs/kustomize/akash-services/ | kubectl apply -f -
@@ -66,14 +65,16 @@ EOF
 
 kubectl kustomize _docs/kustomize/akash-hostname-operator | kubectl apply -f -
 
-kubectl apply -f https://raw.githubusercontent.com/ovrclk/akash/mainnet/main/_run/ingress-nginx-class.yaml
+kubectl apply -f https://raw.githubusercontent.com/ovrclk/akash/v0.14.1/_run/ingress-nginx-class.yaml
 
-kubectl apply -f https://raw.githubusercontent.com/ovrclk/akash/mainnet/main/_run/ingress-nginx.yaml
+kubectl apply -f https://raw.githubusercontent.com/ovrclk/akash/v0.14.1/_run/ingress-nginx.yaml
 
 # check if ubuntu
 apt-get install unzip
 
-AKASH_VERSION="$(curl -s "https://raw.githubusercontent.com/ovrclk/net/master/mainnet/version.txt")"
+cd ..
+
+AKASH_VERSION="0.14.1"
 
 curl https://raw.githubusercontent.com/ovrclk/akash/master/godownloader.sh | sh -s -- "v$AKASH_VERSION"
 
@@ -130,3 +131,8 @@ metadata:
   name: gvisor
 handler: runsc
 EOF
+
+
+
+# Copy config file
+cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
