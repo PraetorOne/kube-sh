@@ -11,7 +11,7 @@ function apt_depends() {
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
     git clone https://github.com/kubernetes-sigs/kubespray.git
     cd kubespray
-    pip3 install -r requirements.txt
+    pip3 install -r requirements-2.11.txt
 }
 
 function yum_depends() {
@@ -21,7 +21,7 @@ function yum_depends() {
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
     git clone https://github.com/kubernetes-sigs/kubespray.git
     cd kubespray
-    pip3 install -r requirements.txt
+    pip3 install -r requirements-2.11.txt
 }
 
 OS_RELEASE=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
@@ -60,7 +60,7 @@ for i in $(seq $NODECOUNT); do
     echo "Please enter Node ${i} ip address"
     read dest
 
-    if [ $i = 1 ]; do
+    if [ $i = 1 ];
     export MASTERNODEIP=${dest}
 
     echo "Please enter password ${dest}"
