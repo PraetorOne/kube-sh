@@ -1,5 +1,5 @@
 ### Note:
-If you are provider only 1 server or you already have kubernetes then use [praetorapp.com](https://praetorapp.com) to become provider
+If you are provide only 1 server or you already have kubernetes then use [praetorapp.com](https://praetorapp.com) to become provider
 
 
 ## Step 1 - Install Kubernetes
