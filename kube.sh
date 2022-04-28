@@ -37,9 +37,6 @@ elif [ "$DEBIAN" = "$OS_RELEASE" ]; then
     apt_depends
 fi
 
-echo "Please enter username"
-read USER
-
 # echo "Please enter password of all nodes"
 # read pass
 
@@ -63,6 +60,9 @@ for i in $(seq $NODECOUNT); do
     if [ $i = 1 ]; then
         export MASTERNODEIP=${dest}
     fi
+
+    echo "Please enter username"
+    read USER
 
     echo "Please enter password ${dest}"
     read pass
