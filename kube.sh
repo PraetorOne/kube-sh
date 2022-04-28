@@ -60,8 +60,9 @@ for i in $(seq $NODECOUNT); do
     echo "Please enter Node ${i} ip address"
     read dest
 
-    if [ $i = 1 ];
-    export MASTERNODEIP=${dest}
+    if [ $i = 1 ]; then
+        export MASTERNODEIP=${dest}
+    fi
 
     echo "Please enter password ${dest}"
     read pass
