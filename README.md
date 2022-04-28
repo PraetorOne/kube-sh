@@ -1,3 +1,7 @@
+### Note:
+If you are provider only 1 server or you already have kubernetes then use [praetorapp.com](https://praetorapp.com) to become provider
+
+
 ## Step 1 - Install Kubernetes
 
 Prerequisits
@@ -30,65 +34,14 @@ clusters:
       insecure-skip-tls-verify: true # Add this line in the config file
 ```
 
-## Step 3 - Ready Kubernetes cluster for Akash
+And remove certificate from config file.
 
-```shell
-wget https://raw.githubusercontent.com/PraetorOne/kube-sh/main/akash.sh
-chmod +x akash.sh
-./akash.sh
-```
+## Step 3 - Use Praetor App to become Provider
 
-After this step check if everything is install using following script and check result
+Go to [praetorapp.com](https://praetorapp.com) to become provider and follow the on screen instruction.
 
-Check if kubernetes server can be accessed through control machine.
+Note: when asked is this kubernetes akash Ready? Then Say **NO** , Praetor will install required dependencies.
 
-```shell
-kubectl get nodes
-
-# Result
-# node1   Ready    control-plane,master   4d20h   v1.23.4
-# node2   Ready    control-plane,master   4d20h   v1.23.4
-# node3   Ready    <none>                 4d20h   v1.23.4
-# node4   Ready    <none>                 4d20h   v1.23.4
-```
-
-```shell
-kubectl get networkpolicy
-
-# Result
-# default-deny-ingress   <none>         4d20h
-```
-
-```shell
-kubectl get crd
-
-# Confirm this entries in the list
-# manifests.akash.network
-# providerhosts.akash.network
-```
-
-## Step 4 - Become Akash Provider using Praetor Provider service
-
-Go to [Praetor Provider](https://praetor.testcoders.com) and connect wallet to get started.
-
-#
-
-# If you are installing using K3S then follow this steps
-
-### Step 1
-
-Prerequisits
-
-- Have 1 Server with root access
-- Install supported OS (Debain 11, Debian 10, Centos 7, Ubuntu 20)
-- Make sure you have open root access to all servers by following [Root Access](https://github.com/PraetorOne/kube-sh/blob/main/guides/ROOTACCESS.md) guide
-
-Run this script in same machine
-
-```shell
-curl -sfL https://raw.githubusercontent.com/PraetorOne/kube-sh/main/k3s.sh | bash -
-```
-
-### Issues
+## Issues
 
 Please create an issue in this repo if you find any in these scripts.
