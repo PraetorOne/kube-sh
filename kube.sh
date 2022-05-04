@@ -5,8 +5,6 @@
 function apt_depends() {
     apt-get update
     apt-get install -y python3-pip git sshpass software-properties-common unzip
-    add-apt-repository --yes --update ppa:ansible/ansible
-    # apt-get install -y ansible
     apt install libffi-dev
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
     git clone https://github.com/kubernetes-sigs/kubespray.git
