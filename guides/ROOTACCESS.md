@@ -10,7 +10,7 @@ Warning! Enabling this have serious cosequences, Please disable root access afte
 cd /etc/ssh
 
 # you can also use vi to edit this file
-nano /etc/sshd_config
+nano /etc/ssh/sshd_config
 
 # add this lines in bottom of file
 PermitRootLogin yes
